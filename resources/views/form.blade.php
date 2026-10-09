@@ -1,38 +1,53 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', 'Form Laporan Banjir')
 
 @section('content')
 
-<style></style>
-
-<div class="container form-container">
+<div class="container">
 
     <div class="form-card">
 
         <h1>Form Laporan Banjir</h1>
 
-        <p class="description">
-            Silakan isi data kejadian banjir dengan lengkap.
+        <p>
+            Silakan isi data kejadian banjir berikut.
         </p>
 
+
         @if ($errors->any())
+
             <div class="error-box">
-                <strong>Data belum lengkap:</strong>
+
+                <strong>
+                    Terdapat kesalahan:
+                </strong>
 
                 <ul>
+
                     @foreach ($errors->all() as $error)
+
                         <li>{{ $error }}</li>
+
                     @endforeach
+
                 </ul>
+
             </div>
+
         @endif
 
-        <form action="{{ route('lapor.kirim') }}" method="POST">
+
+        <form
+            action="{{ route('laporan.kirim') }}"
+            method="POST"
+        >
 
             @csrf
 
+
             <div class="form-group">
+
                 <label for="nama">
                     Nama Pelapor
                 </label>
@@ -42,12 +57,14 @@
                     id="nama"
                     name="nama"
                     value="{{ old('nama') }}"
-                    placeholder="Masukkan nama Anda"
-                    required
+                    placeholder="Masukkan nama pelapor"
                 >
+
             </div>
 
+
             <div class="form-group">
+
                 <label for="lokasi">
                     Lokasi Kejadian
                 </label>
@@ -58,11 +75,13 @@
                     name="lokasi"
                     value="{{ old('lokasi') }}"
                     placeholder="Contoh: Kecamatan Baleendah"
-                    required
                 >
+
             </div>
 
+
             <div class="form-group">
+
                 <label for="tinggi_air">
                     Tinggi Genangan Air (cm)
                 </label>
@@ -74,11 +93,12 @@
                     value="{{ old('tinggi_air') }}"
                     placeholder="Contoh: 50"
                     min="0"
-                    required
                 >
+
             </div>
 
-            <button type="submit" class="button submit-button">
+
+            <button type="submit" class="button">
                 Kirim Laporan
             </button>
 

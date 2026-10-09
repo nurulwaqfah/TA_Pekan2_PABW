@@ -6,19 +6,34 @@ use Illuminate\Http\Request;
 
 class LaporBanjirController extends Controller
 {
-    // Menampilkan halaman awal
-    public function home()
+    public function laporan()
     {
-        return view('home');
+        $laporan = [
+            [
+                'nama' => 'Andi',
+                'lokasi' => 'Kecamatan Baleendah',
+                'tinggi_air' => 20
+            ],
+            [
+                'nama' => 'Siti',
+                'lokasi' => 'Kecamatan Dayeuhkolot',
+                'tinggi_air' => 50
+            ],
+            [
+                'nama' => 'Budi',
+                'lokasi' => 'Kecamatan Bojongsoang',
+                'tinggi_air' => 85
+            ],
+        ];
+
+        return view('laporan', compact('laporan'));
     }
 
-    // Menampilkan form laporan
     public function form()
     {
         return view('form');
     }
 
-    // Memproses data dari form
     public function kirim(Request $request)
     {
         $request->validate([

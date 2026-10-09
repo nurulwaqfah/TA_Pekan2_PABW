@@ -1,49 +1,51 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', 'Konfirmasi Laporan')
 
 @section('content')
 
-<div class="container confirmation-container">
+<div class="container">
 
     <div class="confirmation-card">
 
-        <div class="success-icon">
-            ✓
-        </div>
+        <x-alert title="Laporan Berhasil Dikirim">
+            Terima kasih. Laporan banjir Anda berhasil diproses.
+        </x-alert>
 
-        <h1>Laporan Berhasil Dikirim</h1>
 
-        <p>
-            Berikut adalah data laporan yang telah Anda kirimkan.
-        </p>
+        <h2>Data Laporan</h2>
+
 
         <div class="report-data">
 
-            <div class="data-row">
-                <span>Nama Pelapor</span>
-                <strong>{{ $data['nama'] }}</strong>
-            </div>
+            <p>
+                <strong>Nama Pelapor:</strong>
+                {{ $data['nama'] }}
+            </p>
 
-            <div class="data-row">
-                <span>Lokasi Kejadian</span>
-                <strong>{{ $data['lokasi'] }}</strong>
-            </div>
+            <p>
+                <strong>Lokasi Kejadian:</strong>
+                {{ $data['lokasi'] }}
+            </p>
 
-            <div class="data-row">
-                <span>Tinggi Genangan</span>
-                <strong>{{ $data['tinggi_air'] }} cm</strong>
-            </div>
+            <p>
+                <strong>Tinggi Genangan:</strong>
+                {{ $data['tinggi_air'] }} cm
+            </p>
 
         </div>
 
-        <div class="warning">
-            <strong>Catatan:</strong>
-            Data ini hanya ditampilkan sebagai konfirmasi
-            dan tidak disimpan secara permanen.
-        </div>
 
-        <a href="{{ route('lapor.form') }}" class="button">
+        <p class="note">
+            Data laporan hanya diproses sementara
+            dan tidak disimpan ke database.
+        </p>
+
+
+        <a
+            href="{{ route('laporan.form') }}"
+            class="button"
+        >
             Buat Laporan Baru
         </a>
 
